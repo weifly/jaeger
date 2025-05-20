@@ -26,7 +26,7 @@ tags() {
         # append space
         IMAGE_TAGS="${IMAGE_TAGS} "
     fi
-    IMAGE_TAGS="${IMAGE_TAGS}--tag docker.io/${1} --tag quay.io/${1}"
+    IMAGE_TAGS="${IMAGE_TAGS}--tag docker.io/${1}"
 }
 
 ## If we are on a release tag, let's extract the version number.
