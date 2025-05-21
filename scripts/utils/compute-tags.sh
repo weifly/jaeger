@@ -41,7 +41,7 @@ elif [[ $BRANCH != "main" ]]; then
     exit
 fi
 
-tags "${BASE_BUILD_IMAGE}-snapshot:${GITHUB_SHA}"
-tags "${BASE_BUILD_IMAGE}-snapshot:latest"
+tags "${BASE_BUILD_IMAGE}:2.6.1-rc1"
+tags "${BASE_BUILD_IMAGE}:latest"
 
 echo "${IMAGE_TAGS}"
