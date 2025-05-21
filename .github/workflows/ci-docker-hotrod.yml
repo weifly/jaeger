@@ -76,3 +76,4 @@ jobs:
       run:  bash scripts/build/build-hotrod-image.sh ${{ env.BUILD_FLAGS }} -v ${{ matrix.jaeger-version }} -r ${{ matrix.runtime }}
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

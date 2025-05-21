@@ -47,6 +47,7 @@ jobs:
       run: bash scripts/build/build-crossdock.sh
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     - name: Output crossdock logs
       run: make crossdock-logs
