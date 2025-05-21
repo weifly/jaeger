@@ -24,7 +24,7 @@ docker_file_arg="Dockerfile"
 target_arg=""
 local_test_only='N'
 platforms="linux/amd64"
-namespace="weifly1985"
+namespace="weifly"
 overwrite='N'
 upload_readme='N'
 

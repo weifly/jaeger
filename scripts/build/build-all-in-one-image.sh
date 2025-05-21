@@ -75,7 +75,7 @@ set -x
 # be overrided by passing architecture value to the script:
 # `GOARCH=<target arch> ./scripts/build/build-all-in-one-image.sh`.
 GOARCH=${GOARCH:-$(go env GOARCH)}
-repo="weifly1985/${BINARY}"
+repo="weifly/${BINARY}"
 
 # verify Node.js version
 expected_version="v$(cat jaeger-ui/.nvmrc)"
