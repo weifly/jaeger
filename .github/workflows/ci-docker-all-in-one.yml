@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        jaeger_version: [v1, v2]
+        jaeger_version: [v2]
 
     steps:
     - uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
@@ -49,6 +49,7 @@ jobs:
 
     - uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # v3.6.0
 
+    # set "-p linux/amd64" without PR or Merge Queue
     - name: Define BUILD_FLAGS var if running on a Pull Request or Merge Queue
       run: |
         case ${GITHUB_EVENT_NAME} in
@@ -56,7 +57,7 @@ jobs:
             echo "BUILD_FLAGS=-l -D -p linux/$(go env GOARCH)" >> ${GITHUB_ENV}
             ;;
           *)
-            echo "BUILD_FLAGS=" >> ${GITHUB_ENV}
+            echo "BUILD_FLAGS=-p linux/amd64" >> ${GITHUB_ENV}
             ;;
         esac
 
@@ -67,4 +68,4 @@ jobs:
           "${{ matrix.jaeger_version }}"
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

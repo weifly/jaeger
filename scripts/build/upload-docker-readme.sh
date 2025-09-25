@@ -20,10 +20,8 @@ abs_readme_path=$(realpath "$readme_path")
 repository="jaegertracing/$repo"
 
 DOCKERHUB_TOKEN=${DOCKERHUB_TOKEN:?'missing Docker Hub token'}
-QUAY_TOKEN=${QUAY_TOKEN:?'missing Quay token'}
 
 dockerhub_url="https://hub.docker.com/v2/repositories/$repository/"
-quay_url="https://quay.io/api/v1/repository/${repository}"
 
 if [ ! -f "$abs_readme_path" ]; then
   echo "🟡 Warning: no README file found at path $abs_readme_path"
@@ -55,25 +53,4 @@ if [ "$http_code" -eq 200 ]; then
 else
   echo "🛑 Failed to update Docker Hub README for $repository with status code $http_code"
   echo "🛑 Full response: $response_body"
-fi
-
-# Handling Quay upload
-# encode readme as properly escaped JSON
-quay_body=$(jq -n \
-  --arg full_desc "$readme_content" \
-  '{description: $full_desc}') 
-
-quay_response=$(curl -s -w "%{http_code}" -X PUT "$quay_url" \
-    -H "Content-Type: application/json" \
-    -H "Authorization: Bearer $QUAY_TOKEN" \
-    -d "$quay_body")
-
-quay_http_code="${quay_response: -3}"
-quay_response_body="${quay_response:0:${#quay_response}-3}"
-
-if [ "$quay_http_code" -eq 200 ]; then
-  echo "✅ Successfully updated Quay.io README for $repository"
-else
-  echo "🛑 Failed to update Quay.io README for $repository with status code $quay_http_code"
-  echo "🛑 Full response: $quay_response_body"
 fi

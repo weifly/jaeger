@@ -24,7 +24,7 @@ docker_file_arg="Dockerfile"
 target_arg=""
 local_test_only='N'
 platforms="linux/amd64"
-namespace="jaegertracing"
+namespace="weifly1985"
 overwrite='N'
 upload_readme='N'
 
@@ -99,9 +99,9 @@ else
     IFS=" " read -r -a IMAGE_TAGS <<< "$(bash scripts/utils/compute-tags.sh ${namespace}/${component_name})"
     echo "::endgroup::"
 
-    # Only push multi-arch images to dockerhub/quay.io for main branch or for release tags vM.N.P{-rcX}
+    # Only push multi-arch images to dockerhub for main branch or for release tags vM.N.P{-rcX}
     if [[ "$BRANCH" == "main" || $BRANCH =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-rc[0-9]+)?$ ]]; then
-	    echo "will build docker images and upload to dockerhub/quay.io, BRANCH=$BRANCH"
+	    echo "will build docker images and upload to dockerhub, BRANCH=$BRANCH"
 	    bash scripts/utils/docker-login.sh
 	    PUSHTAG="type=image,push=true"
 	    upload_comment=" and uploading"

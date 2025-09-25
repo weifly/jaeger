@@ -26,7 +26,7 @@ tags() {
         # append space
         IMAGE_TAGS="${IMAGE_TAGS} "
     fi
-    IMAGE_TAGS="${IMAGE_TAGS}--tag docker.io/${1} --tag quay.io/${1}"
+    IMAGE_TAGS="${IMAGE_TAGS}--tag docker.io/${1}"
 }
 
 ## If we are on a release tag, let's extract the version number.
@@ -41,7 +41,7 @@ elif [[ $BRANCH != "main" ]]; then
     exit
 fi
 
-tags "${BASE_BUILD_IMAGE}-snapshot:${GITHUB_SHA}"
-tags "${BASE_BUILD_IMAGE}-snapshot:latest"
+tags "${BASE_BUILD_IMAGE}:2.10.0-1"
+tags "${BASE_BUILD_IMAGE}:latest"
 
 echo "${IMAGE_TAGS}"
