@@ -41,7 +41,7 @@ elif [[ $BRANCH != "main" ]]; then
     exit
 fi
 
-tags "${BASE_BUILD_IMAGE}:2.10.0-1"
+tags "${BASE_BUILD_IMAGE}:2.10.0-2"
 tags "${BASE_BUILD_IMAGE}:latest"
 
 echo "${IMAGE_TAGS}"

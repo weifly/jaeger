@@ -23,7 +23,7 @@ if [[ "$last_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]];  then
         temp_file=$(mktemp)
         # shellcheck disable=SC2064
         trap "rm -f ${temp_file}" EXIT
-        release_url="https://github.com/jaegertracing/jaeger-ui/releases/download/${last_tag}/assets.tar.gz"
+        release_url="https://github.com/weifly/jaeger-ui/releases/download/${last_tag}/assets.tar.gz"
         if curl --silent --fail --location --output "$temp_file" "$release_url"; then
 
             mkdir -p packages/jaeger-ui/build/
