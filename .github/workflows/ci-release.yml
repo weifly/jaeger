@@ -137,7 +137,7 @@ jobs:
           ${{ steps.params.outputs.docker_flags }}
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     - name: Build, test, and publish all-in-one v1 image
       run: |
@@ -147,7 +147,7 @@ jobs:
           v1
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     - name: Build, test, and publish v2 image
       run: |
@@ -157,7 +157,7 @@ jobs:
           v2
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     - name: Build, test, and publish hotrod image
       run: |
@@ -165,7 +165,7 @@ jobs:
           ${{ steps.params.outputs.docker_flags }}
       env:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
     - name: Generate SBOM
       uses: anchore/sbom-action@e11c554f704a0b820cbf8c51673f6945e0731532 # v0.20.0
